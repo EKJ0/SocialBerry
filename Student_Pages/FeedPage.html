@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>SocialBerry — Social Feed</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="feed.css" />
+</head>
+<body>
+  <header class="feed-header">
+    <nav class="feed-header__nav" aria-label="Main">
+      <a href="#">Category</a>
+      <a href="#">About Us</a>
+      <a href="#">Features</a>
+      <a id="feed-link-map" href="../map_function/MapView.html">Go to map</a>
+    </nav>
+    <div class="feed-header__mid">
+      <nav class="feed-header__nav" aria-label="Account">
+        <a href="SignIn.html">Account</a>
+      </nav>
+      <a class="feed-header__logo" href="SignIn.html" aria-label="Social Berry home">
+        <img src="../Images/e6d91739-84fb-407d-a8da-8a46f0387844.jpg" alt="" width="40" height="40" decoding="async" />
+        <span>Social Berry</span>
+      </a>
+    </div>
+  </header>
+
+  <div class="feed-toolbar">
+    <div class="feed-toolbar__actions">
+      <button type="button" class="feed-icon-btn" aria-label="Add post" title="Add post">
+        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+          <circle cx="12" cy="12" r="10" />
+          <path d="M12 8v8M8 12h8" />
+        </svg>
+      </button>
+      <button type="button" class="feed-icon-btn" aria-label="Liked posts" title="Liked posts">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+          <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 6 4 4 6.5 4c1.74 0 3.41 1 4.25 2.09C11.09 5 12.76 4 14.5 4 17 4 19 6 19 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" />
+        </svg>
+      </button>
+    </div>
+    <h1 class="feed-toolbar__title">Social Feed</h1>
+  </div>
+
+  <main class="feed-main">
+    <div class="feed-grid">
+      <article class="feed-card">
+        <div class="feed-card__media" role="img" aria-label="Post image placeholder"></div>
+        <div class="feed-card__body">
+          <div class="feed-card__text">
+            <h2>Title of MeetUp</h2>
+            <p>When and where</p>
+          </div>
+          <a class="feed-card__cta" href="#">
+            READ MORE
+            <span class="feed-card__cta-icon" aria-hidden="true">→</span>
+          </a>
+        </div>
+      </article>
+
+      <article class="feed-card">
+        <div class="feed-card__media" role="img" aria-label="Post image placeholder"></div>
+        <div class="feed-card__body">
+          <div class="feed-card__text feed-card__text--muted">
+            <h2>Post title</h2>
+            <p>When and where</p>
+          </div>
+          <a class="feed-card__cta" href="#">
+            READ MORE
+            <span class="feed-card__cta-icon" aria-hidden="true">→</span>
+          </a>
+        </div>
+      </article>
+
+      <article class="feed-card">
+        <div class="feed-card__media" role="img" aria-label="Post image placeholder"></div>
+        <div class="feed-card__body">
+          <div class="feed-card__text feed-card__text--muted">
+            <h2>Post title</h2>
+            <p>When and where</p>
+          </div>
+          <a class="feed-card__cta" href="#">
+            READ MORE
+            <span class="feed-card__cta-icon" aria-hidden="true">→</span>
+          </a>
+        </div>
+      </article>
+
+      <article class="feed-card">
+        <div class="feed-card__media" role="img" aria-label="Post image placeholder"></div>
+        <div class="feed-card__body">
+          <div class="feed-card__text feed-card__text--muted">
+            <h2>Post title</h2>
+            <p>When and where</p>
+          </div>
+          <a class="feed-card__cta" href="#">
+            READ MORE
+            <span class="feed-card__cta-icon" aria-hidden="true">→</span>
+          </a>
+        </div>
+      </article>
+
+      <article class="feed-card">
+        <div class="feed-card__media" role="img" aria-label="Post image placeholder"></div>
+        <div class="feed-card__body">
+          <div class="feed-card__text feed-card__text--muted">
+            <h2>Post title</h2>
+            <p>When and where</p>
+          </div>
+          <a class="feed-card__cta" href="#">
+            READ MORE
+            <span class="feed-card__cta-icon" aria-hidden="true">→</span>
+          </a>
+        </div>
+      </article>
+
+      <article class="feed-card">
+        <div class="feed-card__media" role="img" aria-label="Post image placeholder"></div>
+        <div class="feed-card__body">
+          <div class="feed-card__text feed-card__text--muted">
+            <h2>Post title</h2>
+            <p>When and where</p>
+          </div>
+          <a class="feed-card__cta" href="#">
+            READ MORE
+            <span class="feed-card__cta-icon" aria-hidden="true">→</span>
+          </a>
+        </div>
+      </article>
+    </div>
+  </main>
+  <script>
+    (function () {
+      var el = document.getElementById("feed-link-map");
+      if (!el) return;
+      try {
+        el.href = new URL("../map_function/MapView.html", window.location.href).href;
+      } catch (e) {
+        el.setAttribute("href", "../map_function/MapView.html");
+      }
+    })();
+  </script>
+</body>
+</html>
