@@ -191,25 +191,26 @@ a {
   margin: 0 0 0.25rem;
   font-size: 1rem;
   font-weight: 800;
-  color: var(--feed-white);
+  color: var(--feed-text);
   line-height: 1.25;
 }
 
 .feed-card__text p {
   margin: 0;
   font-size: 0.78rem;
-  font-weight: 500;
-  color: rgba(255, 255, 255, 0.92);
+  font-weight: 600;
+  color: #1a1a1a;
   line-height: 1.35;
 }
 
 .feed-card__text--muted h2 {
   font-weight: 700;
-  opacity: 0.95;
+  color: #2a2a2a;
 }
 
 .feed-card__text--muted p {
-  opacity: 0.75;
+  color: #333;
+  font-weight: 500;
 }
 
 .feed-card__cta {
@@ -232,7 +233,7 @@ a {
 }
 
 .feed-card__cta:focus-visible {
-  outline: 2px solid var(--feed-white);
+  outline: 2px solid var(--feed-text);
   outline-offset: 2px;
 }
 
