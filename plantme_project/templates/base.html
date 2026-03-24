@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}PlantMe{% endblock %}</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <header class="site-header">
+        <div class="container nav-wrap">
+            <a class="brand" href="{{ url_for('home') }}">
+                <img src="{{ url_for('static', filename='images/logo.png') }}" alt="PlantMe logo">
+                <div>
+                    <span class="brand-name">PlantMe</span>
+                    <small>Grow habits with care</small>
+                </div>
+            </a>
+            <nav>
+                <a href="{{ url_for('features') }}">Features</a>
+                <a href="{{ url_for('roles') }}">Roles</a>
+                <a href="{{ url_for('garden') }}">Garden</a>
+                <a href="{{ url_for('messages') }}">Messages</a>
+                <a href="{{ url_for('about') }}">About</a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        {% block content %}{% endblock %}
+    </main>
+
+    <footer class="site-footer">
+        <div class="container footer-grid">
+            <div>
+                <h4>PlantMe</h4>
+                <p>A therapy-support website concept combining tasks, habits, messaging, and a growing digital garden.</p>
+            </div>
+            <div>
+                <h4>Demo Pages</h4>
+                <ul>
+                    <li><a href="{{ url_for('dashboard', role='client') }}">Client Dashboard</a></li>
+                    <li><a href="{{ url_for('dashboard', role='therapist') }}">Therapist Dashboard</a></li>
+                    <li><a href="{{ url_for('tasks', role='client') }}">Client Tasks</a></li>
+                    <li><a href="{{ url_for('tasks', role='therapist') }}">Therapist Tasks</a></li>
+                </ul>
+            </div>
+        </div>
+    </footer>
+
+    <script src="{{ url_for('static', filename='js/app.js') }}"></script>
+</body>
+</html>

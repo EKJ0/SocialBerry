@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+{% block title %}PlantMe | Therapist Tasks{% endblock %}
+{% block content %}
+<section class="page-header container">
+    <span class="eyebrow">Therapist tasks</span>
+    <h1>Create and manage client tasks</h1>
+    <p>Daily or weekly frequency, therapist notes, and optional proof all fit your original idea.</p>
+</section>
+
+<section class="section container grid two">
+    <div class="card">
+        <h2>Assign a new task</h2>
+        <form class="mock-form">
+            <label>Client name<input type="text" value="Maya Reed"></label>
+            <label>Task title<input type="text" value="10-minute mindful walk"></label>
+            <label>Description<textarea>Walk outside and notice five calming details in the environment.</textarea></label>
+            <label>Frequency
+                <select>
+                    <option>Daily</option>
+                    <option>Weekly</option>
+                </select>
+            </label>
+            <label>Proof type
+                <select>
+                    <option>Text</option>
+                    <option>Checkbox</option>
+                    <option>Photo</option>
+                    <option>Map tracking</option>
+                </select>
+            </label>
+            <button type="button" class="btn btn-primary">Save task</button>
+        </form>
+    </div>
+    <div class="card">
+        <h2>Current clients</h2>
+        {% for client in clients %}
+        <div class="client-row compact-row">
+            <div>
+                <h4>{{ client.name }}</h4>
+                <p>{{ client.plant_stage }}</p>
+            </div>
+            <span class="pill">{{ client.progress }}% progress</span>
+        </div>
+        {% endfor %}
+    </div>
+</section>
+{% endblock %}

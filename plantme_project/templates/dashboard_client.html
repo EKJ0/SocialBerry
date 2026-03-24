@@ -1,0 +1,65 @@
+{% extends 'base.html' %}
+{% block title %}PlantMe | Client Dashboard{% endblock %}
+{% block content %}
+<section class="page-header container">
+    <span class="eyebrow">Client dashboard</span>
+    <h1>Welcome back, {{ client.name }}</h1>
+    <p>Your therapist today is {{ therapist.name }}. Keep your streak alive and help your plant thrive.</p>
+</section>
+
+<section class="section container">
+    <div class="dashboard-grid">
+        <div class="card summary-card">
+            <h3>Current streak</h3>
+            <p class="big-number">{{ client.streak }} days</p>
+        </div>
+        <div class="card summary-card">
+            <h3>Growth points</h3>
+            <p class="big-number">{{ client.growth_points }}</p>
+        </div>
+        <div class="card summary-card">
+            <h3>Current level</h3>
+            <p class="big-number small">{{ client.level }}</p>
+        </div>
+        <div class="card summary-card">
+            <h3>Hydration</h3>
+            <p class="big-number">{{ client.hydration_today }}/{{ client.hydration_goal }}</p>
+        </div>
+    </div>
+</section>
+
+<section class="section container split-dashboard">
+    <div class="card">
+        <div class="card-header">
+            <h2>Today’s tasks</h2>
+            <a href="{{ url_for('tasks', role='client') }}">See all</a>
+        </div>
+        {% for task in client.tasks %}
+        <div class="task-row">
+            <div>
+                <h4>{{ task.title }}</h4>
+                <p>{{ task.description }}</p>
+                <small>{{ task.schedule }} · Proof: {{ task.proof }}</small>
+            </div>
+            <span class="status {{ task.status|lower|replace(' ', '-') }}">{{ task.status }}</span>
+        </div>
+        {% endfor %}
+    </div>
+
+    <div class="stacked-side">
+        <div class="card">
+            <h2>Quick actions</h2>
+            <div class="quick-actions">
+                <button class="btn btn-primary">Log water</button>
+                <button class="btn btn-secondary">Mark walk done</button>
+                <button class="btn btn-secondary">Send update</button>
+            </div>
+        </div>
+        <div class="card">
+            <h2>Plant status</h2>
+            <p>Your healthy habits are helping your plant stay vibrant. Finish your hydration goal to water it fully today.</p>
+            <a class="btn btn-primary" href="{{ url_for('garden') }}">Open Garden</a>
+        </div>
+    </div>
+</section>
+{% endblock %}

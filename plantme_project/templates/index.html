@@ -1,0 +1,83 @@
+{% extends 'base.html' %}
+{% block title %}PlantMe | Home{% endblock %}
+{% block content %}
+<section class="hero">
+    <div class="container hero-grid">
+        <div>
+            <span class="badge">Therapy + habit gamification</span>
+            <h1>Help clients grow healthy routines like a living garden.</h1>
+            <p>PlantMe turns therapy homework, hydration, walking, and daily progress into a playful growth system where every completed task helps a plant bloom.</p>
+            <div class="hero-actions">
+                <a class="btn btn-primary" href="{{ url_for('dashboard', role='client') }}">View Client Demo</a>
+                <a class="btn btn-secondary" href="{{ url_for('dashboard', role='therapist') }}">View Therapist Demo</a>
+            </div>
+            <div class="stats-row">
+                <div class="stat-card"><strong>2 roles</strong><span>Client and therapist experiences</span></div>
+                <div class="stat-card"><strong>40 tasks</strong><span>Unlock a new plant</span></div>
+                <div class="stat-card"><strong>Daily habits</strong><span>Water, walk, reflect, repeat</span></div>
+            </div>
+        </div>
+        <div class="hero-visual card garden-preview">
+            <img class="logo-large" src="{{ url_for('static', filename='images/logo.png') }}" alt="PlantMe logo large">
+            <div class="progress-stack">
+                <div class="progress-item">
+                    <span>Hydration reminder</span>
+                    <div class="meter"><div style="width: 66%"></div></div>
+                </div>
+                <div class="progress-item">
+                    <span>Plant growth points</span>
+                    <div class="meter"><div style="width: 84%"></div></div>
+                </div>
+                <div class="progress-item">
+                    <span>Outdoor sunlight bonus</span>
+                    <div class="meter"><div style="width: 40%"></div></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="section">
+    <div class="container">
+        <div class="section-heading">
+            <span class="eyebrow">Core concept</span>
+            <h2>What your sketch becomes on the website</h2>
+        </div>
+        <div class="grid three">
+            <article class="card feature-card">
+                <h3>Plant growth from tasks</h3>
+                <p>Tasks completed by the client generate growth points. One task starts the seed. Ten tasks create a sprout. Twenty tasks unlock a full plant. Forty tasks open a new plant slot.</p>
+            </article>
+            <article class="card feature-card">
+                <h3>Therapist-client workflow</h3>
+                <p>Therapists can assign tasks, set frequency, add notes, and review progress. Clients can view work, mark it complete, and send updates or optional proof.</p>
+            </article>
+            <article class="card feature-card">
+                <h3>Wellness-triggered rewards</h3>
+                <p>Hydration can water the plant. Outdoor activity can add sunlight. Walking tasks can optionally connect to map-based tracking for proof and motivation.</p>
+            </article>
+        </div>
+    </div>
+</section>
+
+<section class="section muted">
+    <div class="container split">
+        <div>
+            <span class="eyebrow">Built into this prototype</span>
+            <h2>A clean starter codebase you can extend</h2>
+            <ul class="check-list">
+                <li>Responsive landing page</li>
+                <li>Therapist and client dashboards</li>
+                <li>Task management pages</li>
+                <li>Garden progression page</li>
+                <li>Messaging UI</li>
+                <li>Reusable templates and static files</li>
+            </ul>
+        </div>
+        <div class="card note-card">
+            <h3>Suggested next upgrades</h3>
+            <p>Add user authentication, database storage, notifications, real-time chat, GPS walking validation, and payment for premium plant themes or extra gardens.</p>
+        </div>
+    </div>
+</section>
+{% endblock %}

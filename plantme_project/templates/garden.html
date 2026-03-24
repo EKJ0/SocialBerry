@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+{% block title %}PlantMe | Garden{% endblock %}
+{% block content %}
+<section class="page-header container">
+    <span class="eyebrow">Garden</span>
+    <h1>Your progress grows into plants</h1>
+    <p>{{ client.name }} currently has {{ client.growth_points }} growth points and a {{ garden.current_stage }}.</p>
+</section>
+
+<section class="section container split-dashboard">
+    <div class="card garden-card">
+        <img class="logo-large" src="{{ url_for('static', filename='images/logo.png') }}" alt="PlantMe garden plant">
+        <div class="card-header">
+            <h2>Growth stages</h2>
+        </div>
+        {% for stage in garden.stages %}
+        <div class="stage-row">
+            <strong>{{ stage.name }}</strong>
+            <span>{{ stage.tasks }} task{% if stage.tasks != 1 %}s{% endif %}</span>
+        </div>
+        {% endfor %}
+    </div>
+    <div class="stacked-side">
+        <div class="card">
+            <h2>Reward loop</h2>
+            <ul class="check-list compact">
+                {% for reward in garden.rewards %}
+                <li>{{ reward }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+        <div class="card">
+            <h2>Wellness logic</h2>
+            <p>Hydration = water. Outdoor movement = sunlight. Task completion = growth. Repetition = stronger garden and habit retention.</p>
+        </div>
+    </div>
+</section>
+{% endblock %}

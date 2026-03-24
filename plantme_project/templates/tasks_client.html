@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+{% block title %}PlantMe | Client Tasks{% endblock %}
+{% block content %}
+<section class="page-header container">
+    <span class="eyebrow">Client tasks</span>
+    <h1>Your assigned activities</h1>
+    <p>Mark progress, attach optional proof, and keep your plant growing.</p>
+</section>
+
+<section class="section container">
+    <div class="card">
+        <table class="task-table">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Task</th>
+                    <th>Schedule</th>
+                    <th>Status</th>
+                    <th>Proof</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for task in client.tasks %}
+                <tr>
+                    <td>{{ task.id }}</td>
+                    <td>
+                        <strong>{{ task.title }}</strong>
+                        <div>{{ task.description }}</div>
+                    </td>
+                    <td>{{ task.schedule }}</td>
+                    <td><span class="status {{ task.status|lower|replace(' ', '-') }}">{{ task.status }}</span></td>
+                    <td>{{ task.proof }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</section>
+{% endblock %}
