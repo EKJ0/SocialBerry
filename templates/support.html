@@ -1,0 +1,71 @@
+{% extends 'base.html' %}
+{% block title %}Support — PlantMe{% endblock %}
+{% block content %}
+<section class="page-hero compact-page-hero">
+    <div class="container">
+        <span class="eyebrow">Human support layer</span>
+        <h1>Ask for support without jumping straight into high-pressure therapy.</h1>
+        <p>Choose a support path that matches what you need right now.</p>
+    </div>
+</section>
+
+<section class="section tight-top">
+    <div class="container two-col wide-right">
+        <div>
+            <div class="feature-grid one-col">
+                {% for item in support_options %}
+                <article class="card pricing-card">
+                    <div class="price-top">
+                        <div>
+                            <h3>{{ item.type }}</h3>
+                            <span>{{ item.provider }}</span>
+                        </div>
+                        <strong>{{ item.price }}</strong>
+                    </div>
+                    <p>{{ item.description }}</p>
+                    <div class="meta-line">{{ item.duration }}</div>
+                </article>
+                {% endfor %}
+            </div>
+        </div>
+        <div class="card form-card sticky-card">
+            <h2>Request support</h2>
+            <form method="post" class="checkin-form">
+                <label>
+                    <span>Support type</span>
+                    <select name="support_type">
+                        {% for item in support_options %}
+                        <option value="{{ item.type }}">{{ item.type }} — {{ item.price }}</option>
+                        {% endfor %}
+                    </select>
+                </label>
+                <label><span>What do you need help with?</span><textarea name="message" rows="5" placeholder="Stress, deadlines, loneliness, burnout, motivation..."></textarea></label>
+                <button class="btn btn-primary" type="submit">Submit request</button>
+            </form>
+        </div>
+    </div>
+</section>
+
+<section class="section">
+    <div class="container">
+        <div class="section-heading left">
+            <span class="eyebrow">Your recent requests</span>
+            <h2>Support queue</h2>
+        </div>
+        <div class="feature-grid three">
+            {% for item in requests_data %}
+            <article class="card queue-card">
+                <h3>{{ item['support_type'] }}</h3>
+                <p>{{ item['message'] or 'No message added.' }}</p>
+                <small>{{ item['created_at'].replace('T', ' ') }}</small>
+            </article>
+            {% else %}
+            <article class="card queue-card empty-state">
+                <h3>No requests yet</h3>
+                <p>Submit the form to create your first support request.</p>
+            </article>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+{% endblock %}

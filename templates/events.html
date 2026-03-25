@@ -1,0 +1,102 @@
+{% extends 'base.html' %}
+{% block title %}Events — PlantMe{% endblock %}
+{% block extra_css %}
+<link rel="stylesheet" href="https://unpkg.com/maplibre-gl@5.21.0/dist/maplibre-gl.css" />
+<link rel="stylesheet" href="{{ url_for('static', filename='css/map.css') }}">
+{% endblock %}
+{% block extra_js %}
+<script src="https://unpkg.com/maplibre-gl@5.21.0/dist/maplibre-gl.js"></script>
+<script defer src="{{ url_for('static', filename='js/events_map.js') }}"></script>
+{% endblock %}
+{% block content %}
+<section class="page-hero compact-page-hero">
+    <div class="container">
+        <span class="eyebrow">Wellness events near you</span>
+        <h1>Discover low-cost in-person wellbeing activities.</h1>
+        <p>The map is now fully integrated into the Flask app, powered by MapLibre and your events database.</p>
+    </div>
+</section>
+
+<section class="section tight-top">
+    <div class="container event-layout">
+        <div class="card long-card map-shell-card">
+            <div class="event-toolbar">
+                <div>
+                    <h2>Event map</h2>
+                    <p>Click a marker to preview an event. Use search to move around the city.</p>
+                </div>
+                <a class="btn btn-secondary btn-small" href="#event-list">Jump to list</a>
+            </div>
+            <div class="sb-map-wrap">
+                <div class="sb-search">
+                    <form id="sb-place-search" class="sb-search-form">
+                        <label class="sb-search-label" for="sb-search-input">Search for a place</label>
+                        <input id="sb-search-input" type="search" placeholder="Search a place or campus area">
+                        <button id="sb-search-submit" type="submit">Search</button>
+                    </form>
+                    <p id="sb-search-msg" class="sb-search-msg" hidden></p>
+                </div>
+                <div id="map"></div>
+            </div>
+        </div>
+
+        <div class="card form-card sticky-card">
+            <h2>Why this matters</h2>
+            <ul class="benefit-list compact-list">
+                <li>Real-world wellbeing beyond the screen</li>
+                <li>Affordable student-friendly events</li>
+                <li>Location-based discovery</li>
+                <li>Booking tied to user accounts</li>
+            </ul>
+            {% if not current_user %}
+            <a class="btn btn-primary full-width" href="{{ url_for('login') }}">Log in to book</a>
+            {% endif %}
+        </div>
+    </div>
+</section>
+
+<section class="section" id="event-list">
+    <div class="container two-col wide-right">
+        <div>
+            <div class="feature-grid one-col">
+                {% for event in events %}
+                <article class="card pricing-card event-detail-card">
+                    <div class="price-top">
+                        <div>
+                            <div class="tag soft">{{ event.category }}</div>
+                            <h3>{{ event.title }}</h3>
+                            <span>{{ event.location }}, {{ event.city }}</span>
+                        </div>
+                        <strong>€{{ '%.0f'|format(event.price) }}</strong>
+                    </div>
+                    <p>{{ event.description }}</p>
+                    <div class="meta-line">{{ event.date }} · {{ event.time }} · {{ event.remaining_spots }} spots left</div>
+                    {% if current_user %}
+                    <form method="post" class="inline-booking-form">
+                        <input type="hidden" name="event_id" value="{{ event.id }}">
+                        <button class="btn btn-primary" type="submit">Reserve a spot</button>
+                    </form>
+                    {% else %}
+                    <a class="btn btn-secondary" href="{{ url_for('login') }}">Log in to reserve</a>
+                    {% endif %}
+                </article>
+                {% endfor %}
+            </div>
+        </div>
+        <div class="card long-card sticky-card">
+            <h2>Your bookings</h2>
+            <div class="stack-list">
+                {% for item in bookings %}
+                <div class="stack-item">
+                    <strong>{{ item.title }}</strong>
+                    <span>{{ item.date }} · {{ item.time }}</span>
+                    <p>{{ item.location }}</p>
+                </div>
+                {% else %}
+                <div class="stack-item"><strong>No bookings yet</strong><span>Reserve your first event from the list.</span></div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

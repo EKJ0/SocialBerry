@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% block title %}{% if mode == 'register' %}Create account{% else %}Login{% endif %} — PlantMe{% endblock %}
+{% block content %}
+<section class="page-hero compact-page-hero">
+    <div class="container auth-shell">
+        <div class="card form-card auth-card">
+            {% if mode == 'register' %}
+            <span class="eyebrow">Start your account</span>
+            <h1>Create your PlantMe account</h1>
+            <p>Everything is saved to your own dashboard.</p>
+            <form method="post" class="checkin-form">
+                <label><span>Full name</span><input type="text" name="full_name" required></label>
+                <label><span>Email</span><input type="email" name="email" required></label>
+                <label><span>Password</span><input type="password" name="password" minlength="8" required></label>
+                <button class="btn btn-primary full-width" type="submit">Create account</button>
+            </form>
+            <p class="auth-link">Already have an account? <a href="{{ url_for('login') }}">Log in</a></p>
+            {% else %}
+            <span class="eyebrow">Welcome back</span>
+            <h1>Log in to your dashboard</h1>
+            <p>Access your check-ins, habits, events, and support requests.</p>
+            <form method="post" class="checkin-form">
+                <label><span>Email</span><input type="email" name="email" required></label>
+                <label><span>Password</span><input type="password" name="password" required></label>
+                <button class="btn btn-primary full-width" type="submit">Log in</button>
+            </form>
+            <p class="auth-link">Need an account? <a href="{{ url_for('register') }}">Create one</a></p>
+            {% endif %}
+        </div>
+    </div>
+</section>
+{% endblock %}
