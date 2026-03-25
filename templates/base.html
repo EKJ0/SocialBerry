@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{% block title %}PlantMe{% endblock %}</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <script defer src="{{ url_for('static', filename='js/app.js') }}"></script>
+</head>
+<body>
+    <div class="page-shell">
+        <header class="site-header">
+            <div class="container nav-wrap">
+                <a class="brand" href="{{ url_for('home') }}">
+                    <img src="{{ url_for('static', filename='images/logo.png') }}" alt="PlantMe logo">
+                    <div>
+                        <strong>PlantMe</strong>
+                        <span>Grow through the hard days.</span>
+                    </div>
+                </a>
+                <button class="menu-toggle" data-menu-toggle aria-label="Toggle navigation">☰</button>
+                <nav class="site-nav" data-menu>
+                    <a href="{{ url_for('home') }}">Home</a>
+                    <a href="{{ url_for('dashboard') }}">Dashboard</a>
+                    <a href="{{ url_for('support') }}">Support</a>
+                    <a href="{{ url_for('events') }}">Events</a>
+                    <a href="{{ url_for('pricing') }}">Pricing</a>
+                    <a href="{{ url_for('about') }}">About</a>
+                    <a class="btn btn-primary btn-small" href="{{ url_for('contact') }}">Get Started</a>
+                </nav>
+            </div>
+        </header>
+
+        {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+        <section class="container flash-stack">
+            {% for category, message in messages %}
+            <div class="flash flash-{{ category }}">{{ message }}</div>
+            {% endfor %}
+        </section>
+        {% endif %}
+        {% endwith %}
+
+        <main>
+            {% block content %}{% endblock %}
+        </main>
+
+        <footer class="site-footer">
+            <div class="container footer-grid">
+                <div>
+                    <div class="brand footer-brand">
+                        <img src="{{ url_for('static', filename='images/logo.png') }}" alt="PlantMe logo">
+                        <div>
+                            <strong>PlantMe</strong>
+                            <span>Mental wellness for students, built for prevention.</span>
+                        </div>
+                    </div>
+                    <p class="muted">Daily check-ins, habit-based burnout prevention, affordable support, and low-pressure community wellbeing.</p>
+                </div>
+                <div>
+                    <h4>Platform</h4>
+                    <a href="{{ url_for('dashboard') }}">Burnout dashboard</a>
+                    <a href="{{ url_for('support') }}">Human support</a>
+                    <a href="{{ url_for('events') }}">Wellness events</a>
+                </div>
+                <div>
+                    <h4>Company</h4>
+                    <a href="{{ url_for('about') }}">Mission</a>
+                    <a href="{{ url_for('pricing') }}">Pricing</a>
+                    <a href="{{ url_for('contact') }}">Contact</a>
+                </div>
+            </div>
+            <div class="container footer-bottom">
+                <span>© {{ year }} PlantMe</span>
+                <span>Designed as a polished Flask startup demo.</span>
+            </div>
+        </footer>
+    </div>
+</body>
+</html>

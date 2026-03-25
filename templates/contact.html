@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+{% block title %}Contact — PlantMe{% endblock %}
+{% block content %}
+<section class="page-hero compact-page-hero">
+    <div class="container">
+        <span class="eyebrow">Get started</span>
+        <h1>Request a startup demo or partner with PlantMe.</h1>
+        <p>Perfect for incubators, student teams, and early-stage product showcases.</p>
+    </div>
+</section>
+
+<section class="section tight-top">
+    <div class="container two-col wide-right">
+        <div class="card long-card">
+            <h2>Who this demo is for</h2>
+            <ul class="benefit-list">
+                <li>Startup incubator presentations</li>
+                <li>Student product showcases</li>
+                <li>MVP design demonstrations</li>
+                <li>Mental wellness concept validation</li>
+            </ul>
+        </div>
+        <div class="card form-card sticky-card">
+            <h2>Contact form</h2>
+            <form method="post" class="checkin-form">
+                <label><span>Name</span><input type="text" name="name" required></label>
+                <label><span>Email</span><input type="email" name="email" required></label>
+                <label><span>Message</span><textarea name="message" rows="5" placeholder="Tell us how you'd use PlantMe."></textarea></label>
+                <button class="btn btn-primary" type="submit">Send inquiry</button>
+            </form>
+        </div>
+    </div>
+</section>
+{% endblock %}
