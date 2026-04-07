@@ -3,6 +3,7 @@
 A polished Flask website for the PlantMe student mental wellness startup concept.
 
 ## Features
+
 - Landing page with startup positioning
 - Functional daily check-in dashboard
 - SQLite-backed support request form
@@ -12,6 +13,7 @@ A polished Flask website for the PlantMe student mental wellness startup concept
 - Uses the provided PlantMe logo
 
 ## Run locally
+
 ```bash
 python -m venv .venv
 source .venv/bin/activate  # Windows: .venv\Scripts\activate
