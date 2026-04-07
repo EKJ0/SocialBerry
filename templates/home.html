@@ -1,0 +1,108 @@
+{% extends 'base.html' %}
+{% block title %}PlantMe — Student Wellness{% endblock %}
+{% block content %}
+<section class="hero">
+    <div class="container hero-grid">
+        <div>
+            <span class="eyebrow">Student burnout prevention</span>
+            <h1>Daily support that helps students catch stress before it turns into shutdown.</h1>
+            <p class="hero-copy">PlantMe combines emotional check-ins, habit tracking, a burnout risk engine, journaling, wellness events, and support requests in one student-friendly experience.</p>
+            <div class="hero-actions">
+                {% if current_user %}
+                    <a class="btn btn-primary" href="{{ url_for('dashboard') }}">Open dashboard</a>
+                {% else %}
+                    <a class="btn btn-primary" href="{{ url_for('register') }}">Create account</a>
+                    <a class="btn btn-secondary" href="{{ url_for('login') }}">Log in</a>
+                {% endif %}
+            </div>
+            <div class="hero-stats">
+                <article class="stat-card"><strong>{{ stats.users }}</strong><span>users</span></article>
+                <article class="stat-card"><strong>{{ stats.checkins }}</strong><span>check-ins</span></article>
+                <article class="stat-card"><strong>{{ stats.event_bookings }}</strong><span>event bookings</span></article>
+            </div>
+        </div>
+        <div class="glass-card plant-card">
+            <div class="plant-card-head">
+                <div>
+                    <span class="eyebrow">What is already functional</span>
+                    <h3>Real MVP foundations</h3>
+                </div>
+                <img src="{{ url_for('static', filename='images/logo.png') }}" alt="PlantMe logo">
+            </div>
+            <ul class="benefit-list compact-list">
+                <li>User registration and login</li>
+                <li>User-specific dashboard and data</li>
+                <li>Burnout scoring logic</li>
+                <li>Habit tracker and journal entries</li>
+                <li>Map-based event discovery</li>
+                <li>Event booking and support requests</li>
+            </ul>
+        </div>
+    </div>
+</section>
+
+<section class="section">
+    <div class="container">
+        <div class="section-heading">
+            <span class="eyebrow">Core product</span>
+            <h2>Designed around prevention, not crisis</h2>
+        </div>
+        <div class="feature-grid three">
+            <article class="card"><h3>Daily emotional check-ins</h3><p>Capture stress, sleep, energy, and social battery in under a minute.</p></article>
+            <article class="card"><h3>Habit-based burnout prevention</h3><p>Track small behaviors like walks, hydration, breathing, and study breaks.</p></article>
+            <article class="card"><h3>Human support when needed</h3><p>Submit support requests before reaching a crisis point.</p></article>
+        </div>
+    </div>
+</section>
+
+<section class="section tint-section">
+    <div class="container two-col">
+        <div>
+            <span class="eyebrow">Tools for “help me now” moments</span>
+            <h2>Small actions that reduce mental overload</h2>
+            <div class="tool-grid">
+                {% for tool in tools %}
+                <article class="card tool-card">
+                    <div class="tool-top"><strong>{{ tool.name }}</strong><span>{{ tool.time }}</span></div>
+                    <div class="tag">{{ tool.tag }}</div>
+                    <p>{{ tool.description }}</p>
+                </article>
+                {% endfor %}
+            </div>
+        </div>
+        <div class="card narrative-card">
+            <span class="eyebrow">Why it is pitchable</span>
+            <h3>The business model is clean</h3>
+            <p>Freemium subscription, support-session revenue, and event booking commissions. The student focus makes the product easier to explain and validate.</p>
+            <div class="garden-steps">
+                <div><strong>Track</strong><span>Students log daily signals.</span></div>
+                <div><strong>Detect</strong><span>The app estimates burnout risk and suggests next steps.</span></div>
+                <div><strong>Support</strong><span>Students join events or request human help.</span></div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="section">
+    <div class="container">
+        <div class="section-heading">
+            <span class="eyebrow">Wellness events</span>
+            <h2>Low-cost real-world wellbeing</h2>
+        </div>
+        <div class="feature-grid four">
+            {% for event in events %}
+            <article class="card event-card">
+                <div class="tag soft">{{ event.category }}</div>
+                <h3>{{ event.title }}</h3>
+                <ul class="mini-list">
+                    <li>{{ event.date }} at {{ event.time }}</li>
+                    <li>{{ event.location }}</li>
+                    <li>€{{ '%.0f'|format(event.price) }}</li>
+                    <li>{{ event.remaining_spots }} spots left</li>
+                </ul>
+            </article>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+{% endblock %}

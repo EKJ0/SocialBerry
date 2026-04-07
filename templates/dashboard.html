@@ -1,0 +1,183 @@
+{% extends 'base.html' %}
+{% block title %}Dashboard — PlantMe{% endblock %}
+{% block extra_js %}
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+window.dashboardChartData = {{ chart_data|tojson }};
+</script>
+<script defer src="{{ url_for('static', filename='js/dashboard.js') }}"></script>
+{% endblock %}
+{% block content %}
+<section class="page-hero compact-page-hero">
+    <div class="container">
+        <span class="eyebrow">Burnout prevention dashboard</span>
+        <h1>Hi {{ current_user.full_name.split(' ')[0] }}, here is your current wellbeing picture.</h1>
+        <p>Track small daily signals, log habits, and use the recommendations to stay ahead of burnout.</p>
+    </div>
+</section>
+
+<section class="section tight-top">
+    <div class="container dashboard-grid">
+        <div class="card form-card">
+            <h2>Daily check-in</h2>
+            <form method="post" class="checkin-form">
+                <input type="hidden" name="action" value="checkin">
+                <div class="form-row two">
+                    <label><span>Mood</span>
+                        <select name="mood">
+                            <option value="great">Great</option>
+                            <option value="okay" selected>Okay</option>
+                            <option value="stressed">Stressed</option>
+                            <option value="burned_out">Burned out</option>
+                        </select>
+                    </label>
+                    <label><span>Social battery (1–10)</span><input type="range" min="1" max="10" value="5" name="social_battery"></label>
+                </div>
+                <div class="form-row two">
+                    <label><span>Energy (1–10)</span><input type="range" min="1" max="10" value="5" name="energy"></label>
+                    <label><span>Stress (1–10)</span><input type="range" min="1" max="10" value="5" name="stress"></label>
+                </div>
+                <div class="form-row two">
+                    <label><span>Sleep quality (1–10)</span><input type="range" min="1" max="10" value="5" name="sleep"></label>
+                    <label><span>Notes</span><textarea name="notes" rows="4" placeholder="What felt heavy or helpful today?"></textarea></label>
+                </div>
+                <button class="btn btn-primary" type="submit">Save check-in</button>
+            </form>
+        </div>
+
+        <div class="summary-column">
+            <div class="card insight-card">
+                <div class="score-pill accent">{{ burnout.label }}</div>
+                <h3>Burnout score: {{ burnout.score }}/100</h3>
+                <p>{{ burnout.advice }}</p>
+                <div class="mini-growth-bar large"><span style="width: {{ burnout.completion }}%"></span></div>
+                <small>Garden stage: {{ burnout.garden_stage }}</small>
+            </div>
+            <div class="metrics-grid">
+                <article class="card mini-metric"><strong>{{ summary.avg_energy }}</strong><span>Avg. energy</span></article>
+                <article class="card mini-metric"><strong>{{ summary.avg_stress }}</strong><span>Avg. stress</span></article>
+                <article class="card mini-metric"><strong>{{ summary.avg_sleep }}</strong><span>Avg. sleep</span></article>
+                <article class="card mini-metric"><strong>{{ summary.habit_count }}</strong><span>Habits logged</span></article>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="section">
+    <div class="container feature-grid two dashboard-lower-grid">
+        <div class="card long-card">
+            <div class="card-head"><h2>Stress trends</h2><span class="muted small-copy">Last 7 check-ins</span></div>
+            <canvas id="trendChart" height="120"></canvas>
+        </div>
+
+        <div class="card long-card">
+            <h2>Recommendations</h2>
+            <ul class="benefit-list compact-list">
+                {% for item in burnout.recommendations %}
+                <li>{{ item }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+</section>
+
+<section class="section tint-section">
+    <div class="container feature-grid three">
+        <div class="card">
+            <h3>Log a habit</h3>
+            <form method="post" class="checkin-form compact-form">
+                <input type="hidden" name="action" value="habit">
+                <label><span>Habit</span>
+                    <select name="habit_name">
+                        {% for habit in habit_library %}
+                        <option value="{{ habit }}">{{ habit }}</option>
+                        {% endfor %}
+                    </select>
+                </label>
+                <button class="btn btn-primary full-width" type="submit">Add habit</button>
+            </form>
+            <div class="stack-list">
+                {% for item in habits %}
+                <div class="stack-item"><strong>{{ item.habit_name }}</strong><span>{{ item.created_at.replace('T', ' ') }}</span></div>
+                {% else %}
+                <div class="stack-item"><strong>No habits logged yet</strong><span>Start with one simple action.</span></div>
+                {% endfor %}
+            </div>
+        </div>
+
+        <div class="card">
+            <h3>Quick journal</h3>
+            <form method="post" class="checkin-form compact-form">
+                <input type="hidden" name="action" value="journal">
+                <label><span>Title</span><input type="text" name="title" required></label>
+                <label><span>Mood tag</span><input type="text" name="mood_tag" placeholder="Overwhelmed, calm, hopeful..."></label>
+                <label><span>Entry</span><textarea name="content" rows="5" required></textarea></label>
+                <button class="btn btn-primary full-width" type="submit">Save journal entry</button>
+            </form>
+        </div>
+
+        <div class="card">
+            <h3>Latest entries</h3>
+            <div class="stack-list">
+                {% for entry in journals %}
+                <div class="stack-item">
+                    <strong>{{ entry.title }}</strong>
+                    <span>{{ entry.mood_tag or 'No mood tag' }} · {{ entry.created_at.replace('T', ' ') }}</span>
+                    <p>{{ entry.content }}</p>
+                </div>
+                {% else %}
+                <div class="stack-item"><strong>No journal entries yet</strong><span>Use this space to unload the mental noise.</span></div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="section">
+    <div class="container">
+        <div class="section-heading left">
+            <span class="eyebrow">Coping tools</span>
+            <h2>Use something small right now</h2>
+        </div>
+        <div class="feature-grid four">
+            {% for tool in tools %}
+            <article class="card tool-card">
+                <div class="tool-top"><strong>{{ tool.name }}</strong><span>{{ tool.time }}</span></div>
+                <div class="tag">{{ tool.tag }}</div>
+                <p>{{ tool.description }}</p>
+            </article>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<section class="section">
+    <div class="container">
+        <div class="section-heading left">
+            <span class="eyebrow">Check-in history</span>
+            <h2>Your latest saved entries</h2>
+        </div>
+        <div class="card table-wrap">
+            <table>
+                <thead>
+                    <tr><th>Date</th><th>Mood</th><th>Energy</th><th>Stress</th><th>Sleep</th><th>Social</th></tr>
+                </thead>
+                <tbody>
+                    {% for item in checkins %}
+                    <tr>
+                        <td>{{ item.created_at.replace('T', ' ') }}</td>
+                        <td>{{ item.mood }}</td>
+                        <td>{{ item.energy }}</td>
+                        <td>{{ item.stress }}</td>
+                        <td>{{ item.sleep }}</td>
+                        <td>{{ item.social_battery }}</td>
+                    </tr>
+                    {% else %}
+                    <tr><td colspan="6">No check-ins yet.</td></tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</section>
+{% endblock %}

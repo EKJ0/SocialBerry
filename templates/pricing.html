@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% block title %}Pricing — PlantMe{% endblock %}
+{% block content %}
+<section class="page-hero compact-page-hero">
+    <div class="container">
+        <span class="eyebrow">Clean business model</span>
+        <h1>Freemium for students. Affordable support when needed.</h1>
+        <p>Designed to feel accessible, not extractive.</p>
+    </div>
+</section>
+<section class="section tight-top">
+    <div class="container feature-grid three pricing-layout">
+        <article class="card pricing-card featured-soft">
+            <div class="tag">Free</div>
+            <h3>Starter</h3>
+            <div class="price-line">€0<span>/month</span></div>
+            <ul class="benefit-list"><li>Daily check-ins</li><li>Habit tracker</li><li>Journal entries</li><li>Basic burnout insights</li></ul>
+        </article>
+        <article class="card pricing-card featured">
+            <div class="tag solid">Most popular</div>
+            <h3>PlantMe Premium</h3>
+            <div class="price-line">€3.99<span>/month</span></div>
+            <ul class="benefit-list"><li>Advanced trend insights</li><li>Personalized plans</li><li>Premium tools</li><li>Expanded garden rewards</li></ul>
+        </article>
+        <article class="card pricing-card featured-soft">
+            <div class="tag">Flexible</div>
+            <h3>Human Support</h3>
+            <div class="price-line">€12+<span>/session</span></div>
+            <ul class="benefit-list"><li>Support conversations</li><li>Licensed counseling access</li><li>Short reset sessions</li><li>Student pricing</li></ul>
+        </article>
+    </div>
+</section>
+{% endblock %}
