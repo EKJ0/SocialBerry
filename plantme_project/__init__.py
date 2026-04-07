@@ -1,0 +1,2 @@
+"""PlantMe backend package."""
+

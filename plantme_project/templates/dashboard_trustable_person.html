@@ -1,25 +1,25 @@
 {% extends 'base.html' %}
-{% block title %}PlantMe | Therapist Dashboard{% endblock %}
+{% block title %}PlantMe | Trusted Person Dashboard{% endblock %}
 {% block content %}
 <section class="page-header container">
-    <span class="eyebrow">Therapist dashboard</span>
-    <h1>{{ therapist.name }}</h1>
-    <p>{{ therapist.title }} · Assign tasks, review client proof, and track habit growth from one place.</p>
+    <span class="eyebrow">Trusted person dashboard</span>
+    <h1>{{ trustablePerson.name }}</h1>
+    <p>{{ trustablePerson.title }} · Support accountability, review shared updates, and track growth from one place.</p>
 </section>
 
 <section class="section container">
     <div class="dashboard-grid">
         <div class="card summary-card">
-            <h3>Active clients</h3>
-            <p class="big-number">{{ therapist.active_clients }}</p>
+            <h3>People supported</h3>
+            <p class="big-number">{{ trustablePerson.active_clients }}</p>
         </div>
         <div class="card summary-card">
-            <h3>Assigned this week</h3>
-            <p class="big-number">{{ therapist.tasks_assigned_this_week }}</p>
+            <h3>Goals touched this week</h3>
+            <p class="big-number">{{ trustablePerson.tasks_assigned_this_week }}</p>
         </div>
         <div class="card summary-card">
             <h3>Messages today</h3>
-            <p class="big-number">{{ therapist.messages_today }}</p>
+            <p class="big-number">{{ trustablePerson.messages_today }}</p>
         </div>
     </div>
 </section>
@@ -27,8 +27,8 @@
 <section class="section container">
     <div class="card">
         <div class="card-header">
-            <h2>Client overview</h2>
-            <a href="{{ url_for('tasks', role='therapist') }}">Manage tasks</a>
+            <h2>Overview</h2>
+            <a href="{{ url_for('tasks', role='trustablePerson') }}">Shared goals</a>
         </div>
         {% for client in clients %}
         <div class="client-row">
@@ -45,3 +45,4 @@
     </div>
 </section>
 {% endblock %}
+

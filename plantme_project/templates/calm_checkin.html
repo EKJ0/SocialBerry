@@ -1,0 +1,107 @@
+{% extends 'base.html' %}
+{% block title %}PlantMe | Calm check-in{% endblock %}
+{% block content %}
+<section class="page-header container">
+    <span class="eyebrow">Calm check-in</span>
+    <h1>Track signals, see patterns, get support</h1>
+    <p>We estimate near-term risk as low/medium/high and highlight your personal patterns. This is not a diagnosis or a prediction of an exact time.</p>
+</section>
+
+<section class="section container split-dashboard">
+    <div class="card">
+        <div class="card-header">
+            <h2>Quick check-in</h2>
+            <button class="btn btn-secondary" type="button" data-log-episode="true">I had an episode</button>
+        </div>
+
+        <form class="mock-form" data-checkin-form="true">
+            <label>
+                Anxiety level (0–10)
+                <input name="anxiety_level" type="number" min="0" max="10" step="1" required>
+            </label>
+
+            <div class="grid two">
+                <label>
+                    Sleep (hours)
+                    <input name="sleep_hours" type="number" min="0" max="24" step="0.1">
+                </label>
+                <label>
+                    Caffeine (mg)
+                    <input name="caffeine_mg" type="number" min="0" max="2000" step="10">
+                </label>
+            </div>
+
+            <div class="grid two">
+                <label>
+                    Heart rate (bpm)
+                    <input name="heart_rate_bpm" type="number" min="0" max="240" step="1">
+                </label>
+                <label>
+                    Breathing rate (breaths/min)
+                    <input name="breathing_rate_bpm" type="number" min="0" max="60" step="1">
+                </label>
+            </div>
+
+            <div class="grid two">
+                <label>
+                    Stress event (optional)
+                    <select name="stress_event">
+                        <option value="">None</option>
+                        <option value="conflict">Conflict</option>
+                        <option value="deadline">Deadline</option>
+                        <option value="health">Health worry</option>
+                        <option value="social">Social</option>
+                        <option value="commute">Commute</option>
+                        <option value="other">Other</option>
+                    </select>
+                </label>
+                <label>
+                    Context (optional)
+                    <select name="context">
+                        <option value="">—</option>
+                        <option value="home">Home</option>
+                        <option value="work">Work</option>
+                        <option value="commute">Commute</option>
+                        <option value="public">Public place</option>
+                    </select>
+                </label>
+            </div>
+
+            <label>
+                Food level (0 empty → 10 well-fed)
+                <input name="food_level" type="number" min="0" max="10" step="1">
+            </label>
+
+            <button class="btn btn-primary" type="submit">Save check-in</button>
+            <p class="muted-note" data-checkin-status="true"></p>
+        </form>
+    </div>
+
+    <div class="stacked-side">
+        <div class="card">
+            <h2>Risk (near-term)</h2>
+            <div data-risk-output="true">
+                <p class="muted-note">Save a check-in to see your risk for the next hour and next day.</p>
+            </div>
+        </div>
+
+        <div class="card">
+            <h2>Your patterns</h2>
+            <div data-patterns-output="true">
+                <p class="muted-note">As you log, we’ll surface patterns like “higher risk after poor sleep” or “higher risk on commute days”.</p>
+            </div>
+        </div>
+
+        <div class="card">
+            <h2>Support</h2>
+            <div class="quick-actions">
+                <button class="btn btn-secondary" type="button" data-demo="true">1-minute breathing</button>
+                <button class="btn btn-secondary" type="button" data-demo="true">Grounding steps</button>
+                <a class="btn btn-primary" href="{{ url_for('messages') }}">Message trusted person</a>
+            </div>
+            <p class="muted-note">You can also reach out to a trusted person you’ve added in settings.</p>
+        </div>
+    </div>
+</section>
+{% endblock %}
+

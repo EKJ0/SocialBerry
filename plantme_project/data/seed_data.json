@@ -1,7 +1,7 @@
 {
-  "therapist": {
-    "name": "Dr. Sarah Bennett",
-    "title": "Behavioral Therapist",
+  "trustablePerson": {
+    "name": "Sarah Bennett",
+    "title": "Trusted person",
     "active_clients": 12,
     "tasks_assigned_this_week": 37,
     "messages_today": 18
@@ -78,7 +78,7 @@
   },
   "messages": [
     {
-      "sender": "Dr. Sarah Bennett",
+      "sender": "Sarah Bennett",
       "time": "09:10 AM",
       "text": "Great job on your walk yesterday. Keep the momentum going today."
     },
@@ -88,7 +88,7 @@
       "text": "Thank you. I uploaded my reflection note and finished 4 glasses of water so far."
     },
     {
-      "sender": "Dr. Sarah Bennett",
+      "sender": "Sarah Bennett",
       "time": "10:02 AM",
       "text": "Perfect. Once you finish your hydration goal, your plant gets watered too."
     }

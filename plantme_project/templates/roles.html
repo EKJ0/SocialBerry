@@ -4,20 +4,20 @@
 <section class="page-header container">
     <span class="eyebrow">User roles</span>
     <h1>Two different experiences with different permissions</h1>
-    <p>As in your notes, PlantMe separates the client and therapist journeys.</p>
+    <p>PlantMe separates the client journey and a trusted person journey.</p>
 </section>
 
 <section class="section container">
     <div class="grid two">
         <article class="card role-card">
             <h2>Client</h2>
-            <p>Clients focus on completing tasks, building streaks, watering plants, and sharing updates or proof with their therapist.</p>
+            <p>Clients focus on completing tasks, building streaks, watering plants, and sharing updates with a trusted person.</p>
             <a class="btn btn-primary" href="{{ url_for('dashboard', role='client') }}">Open Client Dashboard</a>
         </article>
         <article class="card role-card">
-            <h2>Therapist</h2>
-            <p>Therapists assign work, set frequency, add instructions, monitor progress, and communicate with clients inside one dashboard.</p>
-            <a class="btn btn-secondary" href="{{ url_for('dashboard', role='therapist') }}">Open Therapist Dashboard</a>
+            <h2>Trusted person</h2>
+            <p>Trusted people can support accountability, view shared progress, and communicate with the client inside one dashboard.</p>
+            <a class="btn btn-secondary" href="{{ url_for('dashboard', role='trustablePerson') }}">Open Trusted Person Dashboard</a>
         </article>
     </div>
 </section>

@@ -3,15 +3,15 @@
 {% block content %}
 <section class="page-header container">
     <span class="eyebrow">Messaging</span>
-    <h1>Built-in communication between therapist and client</h1>
-    <p>Text messaging, file or image sharing, and notifications were part of your notes, so this screen reflects that structure.</p>
+    <h1>Built-in communication between client and trusted person</h1>
+    <p>Text messaging, file or image sharing, and notifications are shown here as a simple support channel.</p>
 </section>
 
 <section class="section container">
     <div class="card messages-card">
         <div class="chat-header">
             <div>
-                <h3>{{ therapist.name }}</h3>
+                <h3>{{ trustablePerson.name }}</h3>
                 <small>Chat with {{ client.name }}</small>
             </div>
             <span class="pill">Notifications on</span>

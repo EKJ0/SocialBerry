@@ -4,7 +4,7 @@
 <section class="page-header container">
     <span class="eyebrow">Client dashboard</span>
     <h1>Welcome back, {{ client.name }}</h1>
-    <p>Your therapist today is {{ therapist.name }}. Keep your streak alive and help your plant thrive.</p>
+    <p>Your trusted person today is {{ trustablePerson.name }}. Keep your streak alive and help your plant thrive.</p>
 </section>
 
 <section class="section container">
@@ -50,9 +50,10 @@
         <div class="card">
             <h2>Quick actions</h2>
             <div class="quick-actions">
-                <button class="btn btn-primary">Log water</button>
-                <button class="btn btn-secondary">Mark walk done</button>
-                <button class="btn btn-secondary">Send update</button>
+                <a class="btn btn-primary" href="{{ url_for('calm_checkin') }}">Calm check-in</a>
+                <button class="btn btn-secondary" data-demo="true">Log water</button>
+                <button class="btn btn-secondary" data-demo="true">Mark walk done</button>
+                <button class="btn btn-secondary" data-demo="true">Send update</button>
             </div>
         </div>
         <div class="card">

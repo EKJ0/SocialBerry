@@ -1,0 +1,5 @@
+{"ts": "2026-04-07T11:13:27.842103+00:00", "type": "checkin", "payload": {"anxiety_level": 7, "sleep_hours": 5.0, "caffeine_mg": 220, "heart_rate_bpm": 98, "breathing_rate_bpm": null, "stress_event": "", "context": "commute", "food_level": 2}}
+{"ts": "2026-04-07T11:13:33.401441+00:00", "type": "episode"}
+{"ts": "2026-04-07T11:14:10.689322+00:00", "type": "checkin", "payload": {"anxiety_level": 6, "sleep_hours": 6.0, "caffeine_mg": 120, "heart_rate_bpm": 88, "breathing_rate_bpm": null, "stress_event": "", "context": "work", "food_level": 6}}
+{"ts": "2026-04-07T11:14:10.699630+00:00", "type": "episode"}
+{"ts": "2026-04-07T11:38:23.394047+00:00", "type": "episode"}

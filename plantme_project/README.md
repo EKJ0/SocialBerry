@@ -1,12 +1,12 @@
 # PlantMe
 
-PlantMe is a website concept for therapists and clients that turns therapy homework and healthy habits into a plant-growing journey.
+PlantMe is a website concept for a person building habits (client) and a trusted person that turns healthy habits into a plant-growing journey.
 
 ## What is included
 
 - Flask app structure
 - Templates and static assets
-- Therapist dashboard
+- Trusted person dashboard
 - Client dashboard
 - Task management screens
 - Garden / gamification page
@@ -16,14 +16,14 @@ PlantMe is a website concept for therapists and clients that turns therapy homew
 
 ## Main idea implemented
 
-- Therapists assign tasks
-- Clients complete tasks and send updates
+- A trusted person supports accountability
+- Clients complete goals and share updates
 - Completed tasks give growth points
 - Plants evolve from seed to sprout to full plant
 - Water reminders support hydration habits
 - Outdoor activity can give sunlight bonuses
 - Walking proof can be shared as optional evidence
-- Role-based screens for therapist and client
+- Role-based screens for trusted person and client
 
 ## Run locally
 
